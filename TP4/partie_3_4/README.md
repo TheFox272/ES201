@@ -73,7 +73,7 @@ Par dépit, on va considérer que ces deux lignes correspondent aux valeurs moye
 On récupère également les durées d'accès qui permettent de calculer la puissance consommé par le tableau des données et par celui des tags.  
 On somme ces deux valeurs pour trouver la puissance totale consommée par le cache, en considérant que toutes les sources de pertes sont incluses.  
 
-La puissance totale consommée par l'ensemble processeur + caches L1 sera : P_proc + (1 + p_rw) × P_L1  
+La puissance totale consommée par l'ensemble processeur + caches L1 + cache L2 sera :  
 P_proc + (1 + p_rw) × P_L1 + (miss_IL1 + p_rw × miss_DL1) × P_L2  
 
 Où P_proc est la valeur calculée en Q10, et P_L1 celle déterminée juste avant avec cacti, pondérée par la proportion de lectures et écritures parmi toutes les instructions, déterminée en Q1.  
@@ -90,14 +90,32 @@ On aurait pu détailler plus en distinguant la puissance consommée par une lect
 > Puissance processeur sans caches : 100.0mW  
 > Puissance de chaque cache L1 : 46.79mW  
 > Puissance du cache L2 : 311.4mW  
-> Puissance totale (hors L2) : 193.6mW  
 
 > --- Processeur Cortex A15 ---  
 > Puissance processeur sans caches : 500.0mW  
 > Puissance de chaque cache L1 : 43.05mW  
 > Puissance du cache L2 : 305.7mW  
-> Puissance totale (hors L2) : 586.1mW  
 
 On trace également les efficacités énergétiques pour chaque processeur et chacun des programmes :  
 
 ![Energy_Efficiency.png](Energy_Efficiency.png)
+
+
+# 5. Architecture système big.LITTLE
+
+### Q12
+
+Pour chacun des programmes dijkstra et blowfish séparément, on cherche à déterminer la meilleure taille de caches L1 de chaque processeur.  
+Les deux critères à optimiser sont l'efficacité surfacique et l'efficacité énergétique.  
+
+- Pour le A15, Dijkstra et Blowfish :  
+    Les deux efficacités sont maximales pour une valeur de cache de 32Kio  
+
+- Pour le A7, Dijkstra et Blowfish :  
+    L'efficacité surfacique et énergétique sont maximales pour 16Kio et 8Kio respectivement  
+
+À chaque fois, la surface est légèrement meilleure pour 16Kio que 8Kio, et l'énergie légèrement meilleure pour 8Kio que 16Kio.  
+La différence est très faible, et on choisira de privilégier le critère de l'énergie, qui semble plus important.  
+
+Les valeurs optimales de taille de cache sont donc identique pour les deux applications :  
+32Kio pour le processeur A15 sans ambiguité, et 8Kio pour le A7.  
