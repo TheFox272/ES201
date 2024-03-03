@@ -65,8 +65,6 @@ ax.set_title("Area Efficiency")
 # L1 cache size vs. Efficacité énergétique hors L2
 
 plt.figure(3)
-# A7_power = np.array( [429.5158138326633, 438.290650317782, 439.7005726427026, 444.79356573677114, 462.54843489878095]) #, 504.9631522516877])
-# A15_power = np.array([832.8616820299354, 833.726046018594, 835.0970092875704, 856.5908113613577, 891.8253953687693])
 
 p_rw_dijkstra = .344
 p_rw_blowfish = .2548
@@ -74,11 +72,48 @@ p_rw_blowfish = .2548
 A7_L1_power = np.array([9.064081144350169, 13.451499386909527, 14.156460549369815, 16.70295709640407, 25.580391677408983]) #, 46.78775035386236]
 A15_L1_power = np.array([13.567975081504306, 14.000157075833627, 14.68563871032174, 25.43253974721548, 43.049831750921236])
 
+A7_proc_power = 100
+A15_proc_power = 500
 
-A7_power_dijkstra = 100 + 2 * A7_L1_power * p_rw_dijkstra
-A7_power_blowfish = 100 + 2 * A7_L1_power * p_rw_blowfish
-A15_power_dijkstra = 500 + 2 * A15_L1_power * p_rw_dijkstra
-A15_power_blowfish = 500 + 2 * A15_L1_power * p_rw_blowfish
+A7_L2_power = 311.4
+A15_L2_power = 305.7
+
+
+miss_A_7_IL1_dijkstra = np.array([0.2142, 0.2129, 0.0508, 0.0477, 0.0413])
+miss_A_7_DL1_dijkstra = np.array([0.3727, 0.228, 0.1491, 0.1168, 0.0991])
+# miss_A_7_L2_dijkstra  [0.0001, 0.0001, 0.0003, 0.0003, 0.0004]
+miss_A_7_IL1_blowfish = np.array([0.2396, 0.217, 0.1883, 0.1179, 0.1171])
+miss_A_7_DL1_blowfish = np.array([0.6141, 0.4244, 0.3243, 0.2879, 0.2446])
+# miss_A_7_L2_blowfish  [0.0009, 0.001, 0.0012, 0.002, 0.002]
+miss_A_15_IL1_dijkstra = np.array([0.0754, 0.072, 0.0186, 0.0148, 0.0107])
+miss_A_15_DL1_dijkstra = np.array([0.1359, 0.0897, 0.0659, 0.0433, 0.0195])
+# miss_A_15_L2_dijkstra  [0.0001, 0.0001, 0.0003, 0.0004, 0.0006]
+miss_A_15_IL1_blowfish = np.array([0.1029, 0.0595, 0.059, 0.056, 0.0085])
+miss_A_15_DL1_blowfish = np.array([0.4018, 0.3217, 0.2489, 0.174, 0.033])
+# miss_A_15_L2_blowfish  [0.0012, 0.0021, 0.0021, 0.0023, 0.0156]
+
+
+
+
+# A7_power_dijkstra = A7_proc_power + 2 * A7_L1_power * p_rw_dijkstra
+# A7_power_blowfish = A7_proc_power + 2 * A7_L1_power * p_rw_blowfish
+# A15_power_dijkstra = A15_proc_power + 2 * A15_L1_power * p_rw_dijkstra
+# A15_power_blowfish = A15_proc_power + 2 * A15_L1_power * p_rw_blowfish
+
+
+A7_power_dijkstra = A7_proc_power + (1 + p_rw_dijkstra) * A7_L1_power + \
+    (miss_A_7_IL1_dijkstra + p_rw_dijkstra * miss_A_7_DL1_dijkstra) * A7_L2_power 
+A7_power_blowfish = A7_proc_power + (1 + p_rw_blowfish) * A7_L1_power + \
+    (miss_A_7_IL1_blowfish + p_rw_blowfish * miss_A_7_DL1_blowfish) * A7_L2_power 
+    
+A15_power_dijkstra = A15_proc_power + (1 + p_rw_dijkstra) * A15_L1_power + \
+    (miss_A_7_IL1_dijkstra + p_rw_dijkstra * miss_A_7_DL1_dijkstra) * A15_L2_power 
+A15_power_blowfish = A15_proc_power + (1 + p_rw_blowfish) * A15_L1_power + \
+    (miss_A_7_IL1_blowfish + p_rw_blowfish * miss_A_7_DL1_blowfish) * A15_L2_power 
+
+
+# + miss_rate * A7_L2_power
+
 
 A7_energy_efficiency_dijkstra = A7_IPC_dijkstra / A7_power_dijkstra
 A7_energy_efficiency_blowfish = A7_IPC_blowfish / A7_power_blowfish
@@ -100,7 +135,7 @@ ax.set_xlabel("L1 cache size (KiB)")
 ax.set_ylabel("Efficiency (IPC/mW)")
 
 ax.legend(["A7 dijkstra", "A7 blowfish", "A15 dijkstra", "A15 blowfish"])
-ax.set_title("Energy Efficiency (without L2)")
+ax.set_title("Energy Efficiency")
 
 plt.show()
 

@@ -1,5 +1,5 @@
 Pour les parties 3 et 4, l'exécution des commandes, l'extraction des données, et l'édition des tailles du cache L1 sont automatisées dans le script 'prog.py'  
-Certains calculs et la génération des graphiques se trouvent dans 'graphes.py'  
+Certains calculs et la génération des graphiques se trouvent dans 'graphs.py'  
 
 # 3. Efficacité surfacique
 
@@ -73,25 +73,30 @@ Par dépit, on va considérer que ces deux lignes correspondent aux valeurs moye
 On récupère également les durées d'accès qui permettent de calculer la puissance consommé par le tableau des données et par celui des tags.  
 On somme ces deux valeurs pour trouver la puissance totale consommée par le cache, en considérant que toutes les sources de pertes sont incluses.  
 
-La puissance totale consommée par l'ensemble processeur + caches L1 sera : P_proc + 2 × P_L1 × p_rw  
+La puissance totale consommée par l'ensemble processeur + caches L1 sera : P_proc + (1 + p_rw) × P_L1  
+P_proc + (1 + p_rw) × P_L1 + (miss_IL1 + p_rw × miss_DL1) × P_L2  
+
 Où P_proc est la valeur calculée en Q10, et P_L1 celle déterminée juste avant avec cacti, pondérée par la proportion de lectures et écritures parmi toutes les instructions, déterminée en Q1.  
+Le cache IL1 est sollicité en continu, pour chaque instruction, et DL1 seulement p_rw du temps ; le cache L2 est sollicité seulement en cas de miss des caches IL1 et DL1, qui ont des miss rates distincts, calculés en partie 2.  
+Avec des informations sur la RAM, on pourrait aussi prendre en compte son utilisation, avec le miss rate du cache L2.  
+
 
 Pour Blowfish : p_rw = 22.21% + 3.27% = 25.48%  
 Pour Dijkstra : p_rw = 24.08% + 10.32% = 34.4%  
 
-On aurait pu détailler plus en distinguant la puissance consommée par une lecture ou une écriture.  
+On aurait pu détailler plus en distinguant la puissance consommée par une lecture et par une écriture.  
 
 > --- Processeur Cortex A7 ---  
 > Puissance processeur sans caches : 100.0mW  
 > Puissance de chaque cache L1 : 46.79mW  
 > Puissance du cache L2 : 311.4mW  
-> Puissance totale (hors L2): 193.6mW  
+> Puissance totale (hors L2) : 193.6mW  
 
 > --- Processeur Cortex A15 ---  
 > Puissance processeur sans caches : 500.0mW  
 > Puissance de chaque cache L1 : 43.05mW  
 > Puissance du cache L2 : 305.7mW  
-> Puissance totale (hors L2): 586.1mW  
+> Puissance totale (hors L2) : 586.1mW  
 
 On trace également les efficacités énergétiques pour chaque processeur et chacun des programmes :  
 
