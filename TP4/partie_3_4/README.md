@@ -58,13 +58,13 @@ Avec pour seuls critères la surface et le CPI, on gagne à augmenter la capacit
 ### Q10
 
 La puissance consommée en continu par le processeur est de  
-* Pour la A7 : 1.0 GHz * 0.10 mW/MHz = 100 mW  
-* Pour le A15 : 2.5 GHz * 0.20 mW/MHz = 500 mW  
+* Pour la A7 : 1.0 GHz × 0.10 mW/MHz = 100 mW  
+* Pour le A15 : 2.5 GHz × 0.20 mW/MHz = 500 mW  
 
 ### Q11
 
 Cacti nous fournit beaucoup de données concernant des durées des énergies et des puissances.  
-Mais sans aucune documentation, difficile de savoir si telle consomation est une moyenne sur toute la durée d'allumage de la mémoire ou seulement durant l'accès, ou encore quelles valeur s'additionnent et lesquelles sont déjà comptées dans une autre...  
+Mais sans aucune documentation, difficile de savoir si telle consommation est une moyenne sur toute la durée d'allumage de la mémoire ou seulement sur le temps d'accès, ou encore quelles valeurs s'additionnent et lesquelles sont déjà comptées dans une autre...  
 
 `Data array: Total dynamic read energy/access  (nJ): ...`  
 `Tag array:  Total dynamic read energy/access (nJ): ...`  
@@ -73,25 +73,25 @@ Par dépit, on va considérer que ces deux lignes correspondent aux valeurs moye
 On récupère également les durées d'accès qui permettent de calculer la puissance consommé par le tableau des données et par celui des tags.  
 On somme ces deux valeurs pour trouver la puissance totale consommée par le cache, en considérant que toutes les sources de pertes sont incluses.  
 
-La puissance totale consommée par l'ensemble processeur + caches L1 sera : P_proc + 2 * P_L1 * p_rw  
-Où P_proc est la valeur calculée en Q10, et P_L1 celle déterminée avec cacti, pondrée par la proportion de lectures et écritures parmi toutes les instrucions, déterminée en Q1.  
+La puissance totale consommée par l'ensemble processeur + caches L1 sera : P_proc + 2 × P_L1 × p_rw  
+Où P_proc est la valeur calculée en Q10, et P_L1 celle déterminée juste avant avec cacti, pondérée par la proportion de lectures et écritures parmi toutes les instructions, déterminée en Q1.  
 
-Pour Blowfish, p_rw = 22.21% + 3.27% = 25.48%  
-Pour Dijkstra, p_rw = 24.08% + 10.32% = 34.4%  
+Pour Blowfish : p_rw = 22.21% + 3.27% = 25.48%  
+Pour Dijkstra : p_rw = 24.08% + 10.32% = 34.4%  
 
-On aurait pu préciser plus en distinguant la puissance consomée par une lecture ou une écriture.  
+On aurait pu détailler plus en distinguant la puissance consommée par une lecture ou une écriture.  
 
 > --- Processeur Cortex A7 ---  
 > Puissance processeur sans caches : 100.0mW  
 > Puissance de chaque cache L1 : 46.79mW  
 > Puissance du cache L2 : 311.4mW  
-> Puissance totale (hors L1): 193.6mW  
+> Puissance totale (hors L2): 193.6mW  
 
 > --- Processeur Cortex A15 ---  
 > Puissance processeur sans caches : 500.0mW  
 > Puissance de chaque cache L1 : 43.05mW  
 > Puissance du cache L2 : 305.7mW  
-> Puissance totale (hors L1): 586.1mW  
+> Puissance totale (hors L2): 586.1mW  
 
 On trace également les efficacités énergétiques pour chaque processeur et chacun des programmes :  
 
