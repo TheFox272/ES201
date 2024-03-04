@@ -109,7 +109,6 @@ for proc in ("A7", "A15"):
     print(f"Puissance processeur sans caches : {power_proc:.4}mW")
     print(f"Puissance de chaque cache L1 : {power_L1[5]:.4}mW")
     print(f"Puissance du cache L2 : {power_L2:.4}mW")
-    print(f"Puissance totale (hors L2): {power_proc_plus_L1[5]:.4}mW")
     print()
 
     print("Valeurs en fonction de la taille des L1")
