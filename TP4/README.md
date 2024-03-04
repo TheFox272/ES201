@@ -1,6 +1,6 @@
 # TP4
 
-## Profiling de l'application
+## 1. Profiling de l'application
 
 ### Q1
 
@@ -120,12 +120,10 @@ On remarques que les instructions suivantes globalement sont les plus utilisés 
 | sll    | Shift Left Logical | 14.60 % | 8.04 %   |
 
 Ainsi, ces instructions semblent cruciales dans l'exécution de ces programmes, et mériteraient une optimisation plus poussée. Par exemple, rien qu'en divisant le temps de addu par 3 on obtiendrait :
-$$
-f_{blowfish} = 0.25
-$$
-$$
-S_{blowfish} = \frac{1}{(1 - f) + \frac{f}{3}} = 1.2
-$$
+
+$ f_{blowfish} = 0.25 $
+
+$ S_{blowfish} = \frac{1}{(1 - f) + \frac{f}{3}} = 1.2 $
 
 
 ### Q3
@@ -134,6 +132,7 @@ Les résultats du TP2 révèlent des similitudes et divergences comportementales
 
 En conclusion, les différences de comportement reflètent la nature spécifique des algorithmes mis en œuvre, guidant ainsi les recommandations d'optimisation adaptées à chaque application.
 
+## 2. Evaluation des performances :
 
 ### Q4
 
@@ -188,7 +187,7 @@ Pour évaluer les prédictions de branchements, on utilise les taux de prédicti
 Ces taux restent inchangés même en variant les tailles des caches IL1 et DL1, ce qui est attendu car les prédicteur de branchements bimodals ne font pas appel au cache.
 
 
-Globalement, l'augmentation de la taille des caches IL1 et IL2 semble augmenter les performances globlales de manière notable dans un premier temps, puis plus faiblement dans un second temps. Le seul contre coup à cette augmentation est l'augmention du miss rate de lu cache L2 qui reste extrêmement faible et qui est négligeable. La meilleure configuration est donc celle avec 32KB de cache de niveau 1.
+Globalement, l'augmentation de la taille des caches IL1 et IL2 semble augmenter les performances globlales de manière notable dans un premier temps, puis plus faiblement dans un second temps. Le seul contre coup à cette augmentation est l'augmention du miss rate du cache L2 qui reste extrêmement faible et qui est négligeable. La meilleure configuration est donc celle avec 32KB de cache de niveau 1.
 
 
 ### Q5 
