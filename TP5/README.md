@@ -1,6 +1,8 @@
 # TP5
 
-## Q1
+## Analyse théorique de cohérence de cache
+
+### Q1
 
 On suppose que les matrices sont de dimensions $n*n$ où $n = k*m$.
 
@@ -19,5 +21,36 @@ On suppose que les matrices sont de dimensions $n*n$ où $n = k*m$.
 
 TODO : faire dessins ou tableaux pour mieux expliquer caches
 
+
+## Paramètres de l'architecture multicoeurs
+
+### Q2 
+
+| Paramètre      | Valeur par défault |
+| -------------- | ------------------ |
+| fetchQueueSize | 32                 |
+| decodeWidth    | 8                  |
+| issueWidth     | 8                  |
+| commitWidth    | 8                  |
+| LQEntries      | 32                 |
+| SQEntries      | 32                 |
+
+
+
+### Q3
+
+| Cache   | Paramètre       | Valeur par défault   |
+| ------- | --------------- | -------------------- |
+| IL1     | Associativité   | 2                    |
+|         | Taille          | 32KB                 |
+|         | Taille ligne    | 64                   |
+| ------- | --------------- | -------------------- |
+| DL1     | Associativité   | 2                    |
+|         | Taille          | 64KB                 |
+|         | Taille ligne    | 64                   |
+| ------- | --------------- | -------------------- |
+| L2      | Associativité   | 8                    |
+|         | Taille          | 2MB                  |
+|         | Taille ligne    | 64                   |
 
 
