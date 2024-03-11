@@ -112,35 +112,38 @@ D'après les résultats de la question 5 :
 Pour calculer le speed up, on calcule :
 $S(n)=\frac{numCycles(n=1)}{max-numCycles(n)}$
 
-Pour m = 4 : numCycles(n=1) = 16577
-| n | Speed-up |
-|---|----------|
-| 2 | 0,19681  |
-| 4 | 0,1945   |
+Pour m = 4 :
+| n | max cpu.numCycles |
+|---|-------------------|
+| 1 | cpu : 80432       |
+| 2 | cpu0 : 84230      |
+| 4 | cpu0 : 85210      |
 
-Pour m = 8 : numCycles(n=1) = 25255
-| n | sim_insts | max cpu.numCycles | Speed-up |
-|---|-----------|-------------------|----------|
-| 2 | 38281     | cpu0 : 89502      | 0,28217  |
-| 4 | 64719     | cpu0 : 89610      | 0,28183  |
-| 8 | 123166    | cpu0 : 92672      | 0,27252  |
+Pour m = 8 :
+| n | max cpu.numCycles |
+|---|-------------------|
+| 1 | cpu : 87302       |
+| 2 | cpu0 : 89502      |
+| 4 | cpu0 : 89610      |
+| 8 | cpu0 : 92672      |
 
 Pour m = 16 :
-| n | sim_insts | max cpu.numCycles |
-|---|-----------|-------------------|
-| 1 | 86730     | cpu : 127718      |
-| 2 | 100012    | cpu0 : 115372     |
-| 4 | 124108    | cpu0 : 107704     |
-| 8 | 187864    | cpu0 : 107698     |
+| n | max cpu.numCycles |
+|---|-------------------|
+| 1 | cpu : 127718      |
+| 2 | cpu0 : 115372     |
+| 4 | cpu0 : 107704     |
+| 8 | cpu0 : 107698     |
 n=16 -> Erreur de segmentation (core dumped)
 
 Pour m = 32 :
-| n | sim_insts | max cpu.numCycles |
-|---|-----------|-------------------|
-| 1 | 547019    | cpu : 382072      |
-| 2 | 562625    | cpu0 : 264216     |
-| 4 | 588863    | cpu0 : 203618     |
+| n | max cpu.numCycles |
+|---|-------------------|
+| 1 | cpu : 382072      |
+| 2 | cpu0 : 264216     |
+| 4 | cpu0 : 203618     |
 n=8 -> Erreur de segmentation (core dumped)
+
 
 ### Q7 
 La valeur maximale de l'IPC s'obtient en calculant : 
