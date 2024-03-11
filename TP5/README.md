@@ -116,32 +116,32 @@ Pour calculer le speed up, on calcule :
 $S(n)=\frac{numCycles(n=1)}{max-numCycles(n)}$
 
 Pour m = 4 : numCycles(n=1) = 80432
-| n | max cpu.numCycles | Speed-up |
-|---|-------------------|----------|
-| 2 | cpu0 : 84230      | 0,95491  | 
-| 4 | cpu0 : 85210      | 0,94393  |
+| n | Speed-up |
+|---|----------|
+| 2 | 0,95491  | 
+| 4 | 0,94393  |
 
 Pour m = 8 : numCycles(n=1) = 87302
-| n | max cpu.numCycles | Speed-up |
-|---|-------------------|----------|
-| 2 | cpu0 : 89502      | 0,97542  |
-| 4 | cpu0 : 89610      | 0,97424  |
-| 8 | cpu0 : 92672      | 0,94205  |
+| n | Speed-up |
+|---|----------|
+| 2 | 0,97542  |
+| 4 | 0,97424  |
+| 8 | 0,94205  |
 
 Pour m = 16 : numCycles(n=1) = 127718
-| n | max cpu.numCycles | Speed-up |
-|---|-------------------|----------|
-| 2 | cpu0 : 115372     | 1,107010 |
-| 4 | cpu0 : 107704     | 1,185824 |
-| 8 | cpu0 : 107698     | 1,185890 |
+| n | Speed-up |
+|---|----------|
+| 2 | 1,107010 |
+| 4 | 1,185824 |
+| 8 | 1,185890 |
 
 n=16 -> Erreur de segmentation (core dumped)
 
 Pour m = 32 : numCycles(n=1) = 382072
-| n | max cpu.numCycles | Speed-up |
-|---|-------------------|----------|
-| 2 | cpu0 : 264216     | 1,446059 |
-| 4 | cpu0 : 203618     | 1,876416 |
+| n | Speed-up |
+|---|----------|
+| 2 | 1,446059 |
+| 4 | 1,876416 |
 
 n=8 -> Erreur de segmentation (core dumped)
 
@@ -186,9 +186,13 @@ n=8 -> Erreur de segmentation (core dumped)
 
 ### Q8 
 Les données du speed-up sont assez intéressantes : 
+
 -> pour m<=8, le speed-up est inférieur à un et diminue avec l'augmentation du nombre de thread. Ainsi, pour de petites matrices, la simulation montre qu'il n'est pas nécessaire d'utiliser plusieurs processeurs et au contraire, cela diminue la performance de notre programme.
+
 -> pour m>16, le speed-up est supérieur à un et augmente avec l'augmentation du nombre de thread
+
 De plus, peu importe la taille de la matrice, l'IPC augmente avec le nombre de thread ce qui est logique car plus il y a de thread, plus il y a d'instructions effectuées à chaque coup d'horloge.
+
 Ainsi plus une matrice assez grande, on gagne en performance si on augmente le nombre de thread. Cependant, il faut bien prévoir la place dans la mémoire car nous n'avons pas pu faire un certain nombre de calcul (et pas essayer pour m>=64) à cause d'une erreur de segmentation.
 
 
