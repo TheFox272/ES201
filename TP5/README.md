@@ -193,7 +193,7 @@ Les données du speed-up sont assez intéressantes :
 
 De plus, peu importe la taille de la matrice, l'IPC augmente avec le nombre de thread ce qui est logique car plus il y a de thread, plus il y a d'instructions effectuées à chaque coup d'horloge.
 
-Ainsi plus une matrice assez grande, on gagne en performance si on augmente le nombre de thread. Cependant, il faut bien prévoir la place dans la mémoire car nous n'avons pas pu faire un certain nombre de calcul (et pas essayer pour m>=64) à cause d'une erreur de segmentation.
+Ainsi plus une matrice assez grande, plus on gagne en performance si on augmente le nombre de thread. Cependant, il faut bien prévoir la place dans la mémoire car nous n'avons pas pu faire un certain nombre de calcul (et pas essayer pour m>=64) à cause d'une erreur de segmentation.
 
 
 
