@@ -79,40 +79,104 @@ Pour m = 8 :
 | 4 | 64719     | cpu0 : 89610      |
 | 8 | 123166    | cpu0 : 92672      |
 
+Pour m = 16 :
+| n | sim_insts | max cpu.numCycles |
+|---|-----------|-------------------|
+| 1 | 86730     | cpu : 127718      |
+| 2 | 100012    | cpu0 : 115372     |
+| 4 | 124108    | cpu0 : 107704     |
+| 8 | 187864    | cpu0 : 107698     |
+n=16 -> Erreur de segmentation (core dumped)
+
+Pour m = 32 :
+| n | sim_insts | max cpu.numCycles |
+|---|-----------|-------------------|
+| 1 | 547019    | cpu : 382072      |
+| 2 | 562625    | cpu0 : 264216     |
+| 4 | 588863    | cpu0 : 203618     |
+n=8 -> Erreur de segmentation (core dumped)
+
 Quelque soit la taille de la matrice, et le nombre de thread, c'est toujours le processeur de rang 0 qui effectue le plus grand nombre de cycles.
-
-
 
 
 
 ### Q5
 D'après les résultats de la question 5 : 
+
 <img src="m=4.png">
 
 <img src="m=8.png">
 
 ### Q6
 
+Pour calculer le speed up, on calcule :
+$S(n)=\frac{numCycles(n=1)}{max-numCycles(n)}$
+
+Pour m = 4 : numCycles(n=1) = 16577
+| n | Speed-up |
+|---|----------|
+| 2 | 0,19681  |
+| 4 | 0,1945   |
+
+Pour m = 8 : numCycles(n=1) = 25255
+| n | sim_insts | max cpu.numCycles | Speed-up |
+|---|-----------|-------------------|----------|
+| 2 | 38281     | cpu0 : 89502      | 0,28217  |
+| 4 | 64719     | cpu0 : 89610      | 0,28183  |
+| 8 | 123166    | cpu0 : 92672      | 0,27252  |
+
+Pour m = 16 :
+| n | sim_insts | max cpu.numCycles |
+|---|-----------|-------------------|
+| 1 | 86730     | cpu : 127718      |
+| 2 | 100012    | cpu0 : 115372     |
+| 4 | 124108    | cpu0 : 107704     |
+| 8 | 187864    | cpu0 : 107698     |
+n=16 -> Erreur de segmentation (core dumped)
+
+Pour m = 32 :
+| n | sim_insts | max cpu.numCycles |
+|---|-----------|-------------------|
+| 1 | 547019    | cpu : 382072      |
+| 2 | 562625    | cpu0 : 264216     |
+| 4 | 588863    | cpu0 : 203618     |
+n=8 -> Erreur de segmentation (core dumped)
+
 ### Q7 
 La valeur maximale de l'IPC s'obtient en calculant : 
 $IPC_{max}=\frac{sim-insts}{max_{numCycles}}$
 
 Pour m = 4 :
-| n | sim_insts | max cpu.numCycles | IPC     |
-|---|-----------|-------------------| --------|
-| 1 | 16577     | cpu : 80432       | 0,20610 |
-| 2 | 29651     | cpu0 : 84230      | 0,35202 |
-| 4 | 54655     | cpu0 : 85210      | 0,64142 |
+| n | IPC     |
+|---| --------|
+| 1 | 0,20610 |
+| 2 | 0,35202 |
+| 4 | 0,64142 |
 
 Pour m = 8 :
-| n | sim_insts | max cpu.numCycles | IPC     |
-|---|-----------|-------------------|---------|
-| 1 | 25255     | cpu : 87302       | 0,28293 |
-| 2 | 38281     | cpu0 : 89502      | 0,42771 |
-| 4 | 64719     | cpu0 : 89610      | 0,72222 |
-| 8 | 123166    | cpu0 : 92672      | 1,32905 |
+| n | IPC     |
+|---|---------|
+| 1 | 0,28293 |
+| 2 | 0,42771 |
+| 4 | 0,72222 |
+| 8 | 1,32905 |
 
+Pour m = 16 :
+| n | IPC      |
+|---|----------|
+| 1 | 0,679074 |
+| 2 | 0,866865 |
+| 4 | 1,152306 |
+| 8 | 1,744358 |
+n=16 -> Erreur de segmentation (core dumped)
 
+Pour m = 32 :
+| n | IPC      |
+|---|----------|
+| 1 | 1,431717 |
+| 2 | 2,129413 |
+| 4 | 2,891998 |
+n=8 -> Erreur de segmentation (core dumped)
 
 
 
