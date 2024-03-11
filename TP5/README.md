@@ -86,6 +86,7 @@ Pour m = 16 :
 | 2 | 100012    | cpu0 : 115372     |
 | 4 | 124108    | cpu0 : 107704     |
 | 8 | 187864    | cpu0 : 107698     |
+
 n=16 -> Erreur de segmentation (core dumped)
 
 Pour m = 32 :
@@ -94,9 +95,11 @@ Pour m = 32 :
 | 1 | 547019    | cpu : 382072      |
 | 2 | 562625    | cpu0 : 264216     |
 | 4 | 588863    | cpu0 : 203618     |
+
 n=8 -> Erreur de segmentation (core dumped)
 
-Quelque soit la taille de la matrice, et le nombre de thread, c'est toujours le processeur de rang 0 qui effectue le plus grand nombre de cycles.
+Quelque soit la taille de la matrice, et le nombre de thread, c'est toujours le processeur de rang 0 qui effectue le plus grand nombre de cycles. 
+En effet, c'est le thread principal et donc le processeur de rang 0 qui attend la fin de l'exécution de tous les threads secondaires pour considérer que la multiplication des matrices a réussi. 
 
 
 
@@ -131,6 +134,7 @@ Pour m = 16 : numCycles(n=1) = 127718
 | 2 | cpu0 : 115372     | 1,107010 |
 | 4 | cpu0 : 107704     | 1,185824 |
 | 8 | cpu0 : 107698     | 1,185890 |
+
 n=16 -> Erreur de segmentation (core dumped)
 
 Pour m = 32 : numCycles(n=1) = 382072
@@ -138,6 +142,7 @@ Pour m = 32 : numCycles(n=1) = 382072
 |---|-------------------|----------|
 | 2 | cpu0 : 264216     | 1,446059 |
 | 4 | cpu0 : 203618     | 1,876416 |
+
 n=8 -> Erreur de segmentation (core dumped)
 
 
@@ -167,6 +172,7 @@ Pour m = 16 :
 | 2 | 0,866865 |
 | 4 | 1,152306 |
 | 8 | 1,744358 |
+
 n=16 -> Erreur de segmentation (core dumped)
 
 Pour m = 32 :
@@ -175,7 +181,15 @@ Pour m = 32 :
 | 1 | 1,431717 |
 | 2 | 2,129413 |
 | 4 | 2,891998 |
+
 n=8 -> Erreur de segmentation (core dumped)
+
+### Q8 
+Les données du speed-up sont assez intéressantes : 
+-> pour m<=8, le speed-up est inférieur à un et diminue avec l'augmentation du nombre de thread. Ainsi, pour de petites matrices, la simulation montre qu'il n'est pas nécessaire d'utiliser plusieurs processeurs et au contraire, cela diminue la performance de notre programme.
+-> pour m>16, le speed-up est supérieur à un et augmente avec l'augmentation du nombre de thread
+De plus, peu importe la taille de la matrice, l'IPC augmente avec le nombre de thread ce qui est logique car plus il y a de thread, plus il y a d'instructions effectuées à chaque coup d'horloge.
+Ainsi plus une matrice assez grande, on gagne en performance si on augmente le nombre de thread. Cependant, il faut bien prévoir la place dans la mémoire car nous n'avons pas pu faire un certain nombre de calcul (et pas essayer pour m>=64) à cause d'une erreur de segmentation.
 
 
 
