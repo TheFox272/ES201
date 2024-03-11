@@ -87,7 +87,9 @@ Quelque soit la taille de la matrice, et le nombre de thread, c'est toujours le 
 
 ### Q5
 D'après les résultats de la question 5 : 
+<img src="m=4.png">
 
+<img src="m=8.png">
 
 ### Q6
 
