@@ -8,7 +8,7 @@ On suppose que les matrices sont de dimensions $n*n$ où $n = k*m$.
 
 - Pi récupère les lignes de A suivantes : i, m+i, ..., (k-1)*m + i -> shared
 
-![alt text](image.png)
+![alt text](image-0.png)
 
 - Tous les processeurs récupèrent B -> shared
 
