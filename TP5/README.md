@@ -112,36 +112,32 @@ D'après les résultats de la question 5 :
 Pour calculer le speed up, on calcule :
 $S(n)=\frac{numCycles(n=1)}{max-numCycles(n)}$
 
-Pour m = 4 :
-| n | max cpu.numCycles |
-|---|-------------------|
-| 1 | cpu : 80432       |
-| 2 | cpu0 : 84230      |
-| 4 | cpu0 : 85210      |
+Pour m = 4 : numCycles(n=1) = 80432
+| n | max cpu.numCycles | Speed-up |
+|---|-------------------|----------|
+| 2 | cpu0 : 84230      | 0,95491  | 
+| 4 | cpu0 : 85210      | 0,94393  |
 
-Pour m = 8 :
-| n | max cpu.numCycles |
-|---|-------------------|
-| 1 | cpu : 87302       |
-| 2 | cpu0 : 89502      |
-| 4 | cpu0 : 89610      |
-| 8 | cpu0 : 92672      |
+Pour m = 8 : numCycles(n=1) = 87302
+| n | max cpu.numCycles | Speed-up |
+|---|-------------------|----------|
+| 2 | cpu0 : 89502      | 0,97542  |
+| 4 | cpu0 : 89610      | 0,97424  |
+| 8 | cpu0 : 92672      | 0,94205  |
 
-Pour m = 16 :
-| n | max cpu.numCycles |
-|---|-------------------|
-| 1 | cpu : 127718      |
-| 2 | cpu0 : 115372     |
-| 4 | cpu0 : 107704     |
-| 8 | cpu0 : 107698     |
+Pour m = 16 : numCycles(n=1) = 127718
+| n | max cpu.numCycles | Speed-up |
+|---|-------------------|----------|
+| 2 | cpu0 : 115372     | 1,107010 |
+| 4 | cpu0 : 107704     | 1,185824 |
+| 8 | cpu0 : 107698     | 1,185890 |
 n=16 -> Erreur de segmentation (core dumped)
 
-Pour m = 32 :
-| n | max cpu.numCycles |
-|---|-------------------|
-| 1 | cpu : 382072      |
-| 2 | cpu0 : 264216     |
-| 4 | cpu0 : 203618     |
+Pour m = 32 : numCycles(n=1) = 382072
+| n | max cpu.numCycles | Speed-up |
+|---|-------------------|----------|
+| 2 | cpu0 : 264216     | 1,446059 |
+| 4 | cpu0 : 203618     | 1,876416 |
 n=8 -> Erreur de segmentation (core dumped)
 
 
